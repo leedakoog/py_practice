@@ -1,24 +1,15 @@
 from unittest import result
 
 
-def find_min(arr):
+def sel_sort(arr):
     n = len(arr)
-    min_idx = 0
-    for i in range(1, n):
-        if arr[min_idx] > arr[i]:
-            min_idx = i
-    return min_idx
-
-def sort(arr):
-    n = len(arr)
-    sort_list = []
-    while arr:
-        min_idx = find_min(arr)
-        val = arr.pop(min_idx)
-        sort_list.append(val)
-    print("arr ->", arr)
-    return sort_list
-
+    for i in range(n):
+        min_idx = i
+        for j in range(i + 1, n):
+            if arr[min_idx] > arr[j]:
+                min_idx = j
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]
+    return arr
 
 arr = [2, 4, 5, 3 ,1]
-print(sort(arr))
+print(sel_sort(arr))
