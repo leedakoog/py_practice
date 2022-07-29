@@ -1,16 +1,19 @@
-def binary_search(arr, value):
-    n = len(arr)
-    f = 0
-    e = n - 1
-    while True:
-        mid = (f + e) // 2
-        if arr[mid] == value:
-            break
-        elif arr[mid] < value:
-            f = mid + 1
-        else:
-            e = mid - 1
-    return mid
+def palindrome(arr):
+    ar = []
 
-arr = [1, 4, 9, 16, 25, 36, 49, 64, 81]
-print(binary_search(arr, 9))
+    for i in arr:
+        ar.append(i)
+
+
+    while ar:
+        if len(ar) == 1:
+            return 1
+        if ar.pop(0) != ar.pop():
+            return -1
+    return 1
+        
+if palindrome("wertrew") == 1:
+    print("회문이 맞습니다.")
+else:
+    print("회문이 아닙니다.")
+
