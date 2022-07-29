@@ -1,33 +1,16 @@
-def merge_sort(a):
-    n = len(a)
-    if n <= 1:
-        return
-    mid = n // 2
-    g1 = a[:mid]
-    g2 = a[mid:]
-    merge_sort(g1)
-    merge_sort(g2)
-    i1 = 0
-    i2 = 0
-    ia = 0
-    while i1 < len(g1) and i2 < len(g2):
-        if g1[i1] < g2[i2]:
-            a[ia] = g1[i1]
-            i1 += 1
-            ia += 1
+def binary_search(arr, value):
+    n = len(arr)
+    f = 0
+    e = n - 1
+    while True:
+        mid = (f + e) // 2
+        if arr[mid] == value:
+            break
+        elif arr[mid] < value:
+            f = mid + 1
         else:
-            a[ia] = g2[i2]
-            i2 += 1
-            ia += 1
-    while i1 < len(g1):
-        a[ia] = g1[i1]
-        i1 += 1
-        ia += 1
-    while i2 < len(g2):
-        a[ia] = g2[i2]
-        i2 += 1
-        ia += 1
+            e = mid - 1
+    return mid
 
-arr = [6, 8, 3, 9, 10, 1, 2, 4, 7, 5]
-merge_sort(arr)
-print(arr)
+arr = [1, 4, 9, 16, 25, 36, 49, 64, 81]
+print(binary_search(arr, 9))
