@@ -1,20 +1,28 @@
-def samename(arr):
-    d = {}
-    a = set()
-    for i in arr:
-        if i in d:
-            d[i] += 1
-        else:
-            d[i] = 1
-    for i in d:
-        if d[i] > 1:
-            a.add(i)
-    if len(a) > 0:
-        return a
-    return -1
+def fr_of_fr(friend_info, friend):
+    qu = []
+    done = []
 
-arr = ["Tom", "Jerry", "Mike", "Curry", "Happy", "Tom", "Curry"]
-if samename(arr) == -1:
-    print("동명이인 없음")
-else:
-    print(samename(arr))
+    qu.append(friend)
+    done.append(friend)
+
+    while qu:
+        p = qu.pop(0)
+        print(p)
+        for x in friend_info[p]:
+            if x not in done:
+                qu.append(x)
+                done.append(x)
+
+friend_info = {
+    'Summer': ['John', 'Justin', 'Mike'],
+    'John': ['Summer', 'Justin'],
+    'Justin': ['John', 'Summer', 'Mike', 'May'],
+    'Mike': ['Summer', 'Justin'],
+    'May': ['Justin', 'Kim'],
+    'Kim': ['May'],
+    'Tom': ['Jerry'],
+    'Jerry': ['Tom']
+}
+fr_of_fr(friend_info, 'Summer')
+print()
+fr_of_fr(friend_info, 'Jerry')
