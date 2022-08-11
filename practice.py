@@ -1,28 +1,39 @@
-def fr_of_fr(friend_info, friend):
+def maze_sol(maze_info, start, end):
     qu = []
-    done = []
+    done = set()
 
-    qu.append(friend)
-    done.append(friend)
+    qu.append(start)
+    done.add(start)
 
     while qu:
+        print(qu)
         p = qu.pop(0)
         print(p)
-        for x in friend_info[p]:
+        v = p[-1]
+        if v == end:
+            return p
+        for x in maze_info[v]:
             if x not in done:
-                qu.append(x)
-                done.append(x)
+                qu.append(p + x)
+                done.add(x)
+    return "?"
 
-friend_info = {
-    'Summer': ['John', 'Justin', 'Mike'],
-    'John': ['Summer', 'Justin'],
-    'Justin': ['John', 'Summer', 'Mike', 'May'],
-    'Mike': ['Summer', 'Justin'],
-    'May': ['Justin', 'Kim'],
-    'Kim': ['May'],
-    'Tom': ['Jerry'],
-    'Jerry': ['Tom']
+maze_info = {
+    'a': ['e'],
+    'e': ['a', 'i'],
+    'i': ['e', 'm'],
+    'm': ['i', 'n'],
+    'n': ['m', 'j'],
+    'j': ['n', 'k', 'f'],
+    'k': ['j', 'o'],
+    'o': ['k'],
+    'f': ['j', 'g', 'b'],
+    'b': ['f', 'c'],
+    'c': ['b', 'd'],
+    'd': ['c'],
+    'g': ['f', 'h'],
+    'h': ['g', 'l'],
+    'l': ['h', 'p'],
+    'p': ['l']
 }
-fr_of_fr(friend_info, 'Summer')
-print()
-fr_of_fr(friend_info, 'Jerry')
+print(maze_sol(maze_info, 'a', 'p'))
